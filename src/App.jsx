@@ -1,9 +1,9 @@
 import React from "react";
-import Map from "./map";
+import MapContainer from "./map";
 
 const App = () => {
   return (
-      <Map />
+      <MapContainer />
   );
 };
 
