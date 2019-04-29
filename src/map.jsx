@@ -56,8 +56,8 @@ export class MapContainer extends Component {
   getVenues = async () => {
     const endPoint = "https://api.foursquare.com/v2/venues/explore?";
     const parameters = {
-      client_id: "KUZ0H02M1VQNYUNKV40GFCICQUYGHRZJQVFLFS4MK01IHFYE",
-      client_secret: "ESQTWW5FJSPUDTTCM5JWQ1EO3T1GXNRVMS5XTKR3AKC4GNVJ",
+      client_id: "",
+      client_secret: "",
       query: this.state.search,
       near: "Financial District, NY",
       limit: 25,
@@ -80,8 +80,8 @@ export class MapContainer extends Component {
   getMCD = async () => {
     const endPoint = "https://api.foursquare.com/v2/venues/explore?";
     const parameters = {
-      client_id: "KUZ0H02M1VQNYUNKV40GFCICQUYGHRZJQVFLFS4MK01IHFYE",
-      client_secret: "ESQTWW5FJSPUDTTCM5JWQ1EO3T1GXNRVMS5XTKR3AKC4GNVJ",
+      client_id: "",
+      client_secret: "",
       query: "mcdonalds",
       near: "New York, NY",
       limit: 50,
@@ -147,5 +147,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyDKuup9rkE1YPzfcSvki3ing2TzfJj7ufE"
+  apiKey: ""
 })(MapContainer);
