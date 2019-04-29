@@ -1,21 +1,40 @@
 import React from "react";
 
-const Navbar = ({ handleChange, search, getVenues, getMCD, zoom }) => {
+const Navbar = ({ handleChange, search, getVenues, getMCD, getRandom, currQuery }) => {
   return (
     <nav
-      className="navbar is-primary"
+      className="navbar is-dark"
       role="navigation"
       aria-label="main navigation"
     >
       <div className="navbar-brand">
         <a href="/" className="navbar-item">
-          Logo goes here
+            <img src="https://i.imgur.com/upToUD6.png?1" alt="logo" />
         </a>
+        <div className="navbar-item">
+          <button onClick={() => getRandom()} className="button is-primary">
+            <span>What Should I Eat</span>
+            <span className="icon is-small">
+              <i className="fas fa-question" />
+            </span>
+          </button>
+        </div>
+        <div className="navbar-item">
+          <span><h1>{currQuery}</h1></span>
+        </div>
       </div>
-
+      
       <div className="navbar-end">
         <div className="navbar-item">
-            <button onClick={() => getMCD()} className="button is-danger"><span className="icon is-small"><img src='https://news.mcdonalds.com/static-files/2e2f906c-31c1-47a7-881f-d97fb455048f' alt='mcd'/></span><span>McFinder</span></button>
+          <button onClick={() => getMCD()} className="button is-danger">
+            <span className="icon is-small">
+              <img
+                src="https://news.mcdonalds.com/static-files/2e2f906c-31c1-47a7-881f-d97fb455048f"
+                alt="mcd"
+              />
+            </span>
+            <span>McFinder</span>
+          </button>
         </div>
         <div className="navbar-item">
           <div className="field">
@@ -24,12 +43,11 @@ const Navbar = ({ handleChange, search, getVenues, getMCD, zoom }) => {
                 onChange={handleChange}
                 className="input"
                 type="text"
-                placeholder="What eats??"
                 name="search"
                 value={search}
               />
-              <span class="icon is-right">
-              <i class="fas fa-search"></i>
+              <span className="icon is-right">
+                <i className="fas fa-search" />
               </span>
             </div>
           </div>
@@ -45,9 +63,6 @@ const Navbar = ({ handleChange, search, getVenues, getMCD, zoom }) => {
             </span>
             <span>Search</span>
           </button>
-        </div>
-        <div className="navbar-item">
-            <button className="button is-light"><span className="icon is-small"><i className="fas fa-question"></i></span></button>
         </div>
       </div>
     </nav>

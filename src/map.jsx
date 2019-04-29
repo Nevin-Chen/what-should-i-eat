@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
-import Navbar from "./navbar";
+import Navbar from "./Navbar";
 import axios from "axios";
 
 export class MapContainer extends Component {
@@ -13,15 +13,16 @@ export class MapContainer extends Component {
       activeMarker: {},
       selectedPlace: {},
       center: {},
-      bounds: {}
+      bounds: {},
+      currQuery: ""
     };
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.selectedPlace !== prevState.selectedPlace) {
-      let {lat} = this.state.selectedPlace.position
-      let {lng} = this.state.selectedPlace.position
-      this.setState({center: {lat:lat, lng:lng}})
+      let { lat } = this.state.selectedPlace.position;
+      let { lng } = this.state.selectedPlace.position;
+      this.setState({ center: { lat: lat, lng: lng } });
     }
     if (this.state.venues !== prevState.venues) {
       let bounds = new this.props.google.maps.LatLngBounds();
@@ -29,8 +30,8 @@ export class MapContainer extends Component {
         let lat = current.venue.location.lat;
         let lng = current.venue.location.lng;
         return bounds.extend({ lat, lng });
-      })
-      this.setState({bounds: bounds})
+      });
+      this.setState({ bounds: bounds });
     }
   }
 
@@ -56,13 +57,13 @@ export class MapContainer extends Component {
   getVenues = async () => {
     const endPoint = "https://api.foursquare.com/v2/venues/explore?";
     const parameters = {
-      client_id: "",
-      client_secret: "",
+      client_id: "KUZ0H02M1VQNYUNKV40GFCICQUYGHRZJQVFLFS4MK01IHFYE",
+      client_secret: "ESQTWW5FJSPUDTTCM5JWQ1EO3T1GXNRVMS5XTKR3AKC4GNVJ",
       query: this.state.search,
       near: "Financial District, NY",
       limit: 25,
       radius: 50,
-      section: 'food',
+      section: "food",
       v: "20180323"
     };
 
@@ -80,8 +81,8 @@ export class MapContainer extends Component {
   getMCD = async () => {
     const endPoint = "https://api.foursquare.com/v2/venues/explore?";
     const parameters = {
-      client_id: "",
-      client_secret: "",
+      client_id: "KUZ0H02M1VQNYUNKV40GFCICQUYGHRZJQVFLFS4MK01IHFYE",
+      client_secret: "ESQTWW5FJSPUDTTCM5JWQ1EO3T1GXNRVMS5XTKR3AKC4GNVJ",
       query: "mcdonalds",
       near: "New York, NY",
       limit: 50,
@@ -97,6 +98,58 @@ export class MapContainer extends Component {
     });
   };
 
+  getRandom = async () => {
+    let randomQueries = [
+      "Japanese",
+      "Korean",
+      "Vietnamese",
+      "Chinese",
+      "Shanghainese",
+      "Taiwanese",
+      "Thai",
+      "Indian",
+      "Mexican",
+      "Jamaican",
+      "Italian",
+      "French",
+      "German",
+      "Mediterranean",
+      "Greek",
+      "Moroccan",
+      "Filipino",
+      "Hawaiian",
+      "Burgers",
+      "Lobster",
+      "Fried Chicken",
+      "Poke",
+      "Pizza"
+    ];
+
+    function randomInt() {
+      return Math.floor(Math.random() * Math.floor(randomQueries.length));
+    };
+
+    const endPoint = "https://api.foursquare.com/v2/venues/explore?";
+    const parameters = {
+      client_id: "KUZ0H02M1VQNYUNKV40GFCICQUYGHRZJQVFLFS4MK01IHFYE",
+      client_secret: "ESQTWW5FJSPUDTTCM5JWQ1EO3T1GXNRVMS5XTKR3AKC4GNVJ",
+      query: randomQueries[randomInt()],
+      near: "Financial District, NY",
+      limit: 10,
+      radius: 10,
+      v: "20180323"
+    };
+
+    const queryResults = await axios.get(
+      endPoint + new URLSearchParams(parameters)
+    );
+
+    this.setState({
+      venues: queryResults.data.response.groups[0].items,
+      currQuery: parameters.query
+    });
+  };
+
   render() {
     return (
       <div>
@@ -105,6 +158,8 @@ export class MapContainer extends Component {
           search={this.state.search}
           handleChange={this.handleChange}
           getMCD={this.getMCD}
+          getRandom={this.getRandom}
+          currQuery={this.state.currQuery}
         />
         <Map
           google={this.props.google}
@@ -147,5 +202,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: ""
+  apiKey: "AIzaSyDKuup9rkE1YPzfcSvki3ing2TzfJj7ufE"
 })(MapContainer);
