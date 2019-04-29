@@ -11,11 +11,30 @@ export class MapContainer extends Component {
       venues: [],
       showingInfoWindow: false,
       activeMarker: {},
-      selectedPlace: {}
+      selectedPlace: {},
+      center: {},
+      bounds: {}
     };
   }
 
-  onMarkerClick = (props, marker, e) =>
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.selectedPlace !== prevState.selectedPlace) {
+      let {lat} = this.state.selectedPlace.position
+      let {lng} = this.state.selectedPlace.position
+      this.setState({center: {lat:lat, lng:lng}})
+    }
+    if (this.state.venues !== prevState.venues) {
+      let bounds = new this.props.google.maps.LatLngBounds();
+      this.state.venues.map(current => {
+        let lat = current.venue.location.lat;
+        let lng = current.venue.location.lng;
+        return bounds.extend({ lat, lng });
+      })
+      this.setState({bounds: bounds})
+    }
+  }
+
+  onMarkerClick = (props, marker) =>
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
@@ -25,8 +44,7 @@ export class MapContainer extends Component {
   onMapClicked = props => {
     if (this.state.showingInfoWindow) {
       this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
+        showingInfoWindow: false
       });
     }
   };
@@ -38,12 +56,13 @@ export class MapContainer extends Component {
   getVenues = async () => {
     const endPoint = "https://api.foursquare.com/v2/venues/explore?";
     const parameters = {
-      client_id: "",
-      client_secret: "",
+      client_id: "KUZ0H02M1VQNYUNKV40GFCICQUYGHRZJQVFLFS4MK01IHFYE",
+      client_secret: "ESQTWW5FJSPUDTTCM5JWQ1EO3T1GXNRVMS5XTKR3AKC4GNVJ",
       query: this.state.search,
       near: "Financial District, NY",
-      limit: 20,
-      radius: 250,
+      limit: 25,
+      radius: 50,
+      section: 'food',
       v: "20180323"
     };
 
@@ -89,16 +108,17 @@ export class MapContainer extends Component {
         />
         <Map
           google={this.props.google}
-          zoom={13}
           style={{
             width: "100%",
             height: "95%"
           }}
           initialCenter={{
-            lat: 40.7128073,
-            lng: -74.0097476
+            lat: 40.7050957,
+            lng: -74.009168
           }}
-          center={{ lat: 40.7482916, lng: -73.9883262 }}
+          center={this.state.center}
+          bounds={this.state.bounds}
+          zoom={14}
         >
           {this.state.venues.map(current => {
             let lat = current.venue.location.lat;
@@ -127,5 +147,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: ""
+  apiKey: "AIzaSyDKuup9rkE1YPzfcSvki3ing2TzfJj7ufE"
 })(MapContainer);
