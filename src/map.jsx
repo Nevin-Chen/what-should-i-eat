@@ -57,13 +57,12 @@ export class MapContainer extends Component {
   getVenues = async () => {
     const endPoint = "https://api.foursquare.com/v2/venues/explore?";
     const parameters = {
-      client_id: "KUZ0H02M1VQNYUNKV40GFCICQUYGHRZJQVFLFS4MK01IHFYE",
-      client_secret: "ESQTWW5FJSPUDTTCM5JWQ1EO3T1GXNRVMS5XTKR3AKC4GNVJ",
+      client_id: process.env.CLIENT_ID,
+      client_secret: process.env.CLIENT_SECRET,
       query: this.state.search,
       near: "Financial District, NY",
       limit: 25,
       radius: 50,
-      section: "food",
       v: "20180323"
     };
 
@@ -73,7 +72,8 @@ export class MapContainer extends Component {
     if (this.state.search.length > 0) {
       this.setState({
         venues: queryResults.data.response.groups[0].items,
-        search: ""
+        search: "",
+        currQuery: ""
       });
     }
   };
@@ -81,8 +81,8 @@ export class MapContainer extends Component {
   getMCD = async () => {
     const endPoint = "https://api.foursquare.com/v2/venues/explore?";
     const parameters = {
-      client_id: "KUZ0H02M1VQNYUNKV40GFCICQUYGHRZJQVFLFS4MK01IHFYE",
-      client_secret: "ESQTWW5FJSPUDTTCM5JWQ1EO3T1GXNRVMS5XTKR3AKC4GNVJ",
+      client_id: process.env.CLIENT_ID,
+      client_secret: process.env.CLIENT_SECRET,
       query: "mcdonalds",
       near: "New York, NY",
       limit: 50,
@@ -94,7 +94,8 @@ export class MapContainer extends Component {
       endPoint + new URLSearchParams(parameters)
     );
     this.setState({
-      venues: queryResults.data.response.groups[0].items
+      venues: queryResults.data.response.groups[0].items,
+      currQuery: ""
     });
   };
 
@@ -122,7 +123,8 @@ export class MapContainer extends Component {
       "Lobster",
       "Fried Chicken",
       "Poke",
-      "Pizza"
+      "Pizza",
+      "Celery"
     ];
 
     function randomInt() {
@@ -131,8 +133,8 @@ export class MapContainer extends Component {
 
     const endPoint = "https://api.foursquare.com/v2/venues/explore?";
     const parameters = {
-      client_id: "KUZ0H02M1VQNYUNKV40GFCICQUYGHRZJQVFLFS4MK01IHFYE",
-      client_secret: "ESQTWW5FJSPUDTTCM5JWQ1EO3T1GXNRVMS5XTKR3AKC4GNVJ",
+      client_id: process.env.CLIENT_ID,
+      client_secret: process.env.CLIENT_SECRET,
       query: randomQueries[randomInt()],
       near: "Financial District, NY",
       limit: 10,

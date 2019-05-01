@@ -9,7 +9,7 @@ const Navbar = ({ handleChange, search, getVenues, getMCD, getRandom, currQuery 
     >
       <div className="navbar-brand">
         <a href="/" className="navbar-item">
-            <img src="https://i.imgur.com/upToUD6.png?1" alt="logo" />
+            <img src="https://i.imgur.com/Cx0QiNQ.png" alt="logo" />
         </a>
         <div className="navbar-item">
           <button onClick={() => getRandom()} className="button is-primary">
