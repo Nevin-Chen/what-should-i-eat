@@ -26,6 +26,7 @@ export class MapContainer extends Component {
     }
     if (this.state.venues !== prevState.venues) {
       let bounds = new this.props.google.maps.LatLngBounds();
+      bounds.extend({ lat: 40.7050957, lng: -74.009168 })
       this.state.venues.map(current => {
         let lat = current.venue.location.lat;
         let lng = current.venue.location.lng;
@@ -55,20 +56,8 @@ export class MapContainer extends Component {
   };
 
   getVenues = async () => {
-    const endPoint = "https://api.foursquare.com/v2/venues/explore?";
-    const parameters = {
-      client_id: process.env.CLIENT_ID,
-      client_secret: process.env.CLIENT_SECRET,
-      query: this.state.search,
-      near: "Financial District, NY",
-      limit: 25,
-      radius: 50,
-      v: "20180323"
-    };
-
-    const queryResults = await axios.get(
-      endPoint + new URLSearchParams(parameters)
-    );
+    console.log(this.state.search)
+    const queryResults = await axios.get(`/${this.state.search}`);
     if (this.state.search.length > 0) {
       this.setState({
         venues: queryResults.data.response.groups[0].items,
@@ -79,20 +68,7 @@ export class MapContainer extends Component {
   };
 
   getMCD = async () => {
-    const endPoint = "https://api.foursquare.com/v2/venues/explore?";
-    const parameters = {
-      client_id: process.env.CLIENT_ID,
-      client_secret: process.env.CLIENT_SECRET,
-      query: "mcdonalds",
-      near: "New York, NY",
-      limit: 50,
-      radius: 500,
-      v: "20180323"
-    };
-
-    const queryResults = await axios.get(
-      endPoint + new URLSearchParams(parameters)
-    );
+    const queryResults = await axios.get("/McDonalds");
     this.setState({
       venues: queryResults.data.response.groups[0].items,
       currQuery: ""
@@ -100,55 +76,47 @@ export class MapContainer extends Component {
   };
 
   getRandom = async () => {
-    let randomQueries = [
-      "Japanese",
-      "Korean",
-      "Vietnamese",
-      "Chinese",
-      "Shanghainese",
-      "Taiwanese",
-      "Thai",
-      "Indian",
-      "Mexican",
-      "Jamaican",
-      "Italian",
-      "French",
-      "German",
-      "Mediterranean",
-      "Greek",
-      "Moroccan",
-      "Filipino",
-      "Hawaiian",
-      "Burgers",
-      "Lobster",
-      "Fried Chicken",
-      "Poke",
-      "Pizza",
-      "Celery"
-    ];
+    const randomQueries = () => {
+      let cuisines = [
+        "Japanese",
+        "Korean",
+        "Vietnamese",
+        "Chinese",
+        "Shanghainese",
+        "Taiwanese",
+        "Thai",
+        "Indian",
+        "Mexican",
+        "Jamaican",
+        "Italian",
+        "French",
+        "German",
+        "Mediterranean",
+        "Greek",
+        "Moroccan",
+        "Filipino",
+        "Hawaiian",
+        "Burgers",
+        "Lobster",
+        "Fried Chicken",
+        "Poke",
+        "Pizza"
+      ];
 
-    function randomInt() {
-      return Math.floor(Math.random() * Math.floor(randomQueries.length));
+      let randomInt = Math.floor(
+        Math.random() * Math.floor(cuisines.length)
+      );
+
+      return cuisines[randomInt];
     };
 
-    const endPoint = "https://api.foursquare.com/v2/venues/explore?";
-    const parameters = {
-      client_id: process.env.CLIENT_ID,
-      client_secret: process.env.CLIENT_SECRET,
-      query: randomQueries[randomInt()],
-      near: "Financial District, NY",
-      limit: 10,
-      radius: 10,
-      v: "20180323"
-    };
+    await this.setState({currQuery: `${randomQueries()}`
+    });
 
-    const queryResults = await axios.get(
-      endPoint + new URLSearchParams(parameters)
-    );
+    const queryResults = await axios.get(`/${this.state.currQuery}`);
 
     this.setState({
-      venues: queryResults.data.response.groups[0].items,
-      currQuery: parameters.query
+      venues: queryResults.data.response.groups[0].items
     });
   };
 
@@ -175,8 +143,16 @@ export class MapContainer extends Component {
           }}
           center={this.state.center}
           bounds={this.state.bounds}
-          zoom={14}
+          zoom={16}
         >
+        <Marker position={{ lat: 40.7050957, lng: -74.009168 }}
+                onClick={this.onMarkerClick}
+                name={'Current Location'}
+                icon={{
+                  url: "https://i.imgur.com/Cx0QiNQ.png",
+                  scaledSize: new this.props.google.maps.Size(32,32)
+                }}
+              />
           {this.state.venues.map(current => {
             let lat = current.venue.location.lat;
             let lng = current.venue.location.lng;
