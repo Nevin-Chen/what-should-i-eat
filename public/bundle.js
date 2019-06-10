@@ -43775,7 +43775,7 @@ const Navbar = ({
     href: "/",
     className: "navbar-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "https://i.imgur.com/Cx0QiNQ.png",
+    src: "https://i.imgur.com/QlENgvy.png",
     alt: "logo"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "navbar-item"
@@ -43786,9 +43786,21 @@ const Navbar = ({
     className: "icon is-small"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "fas fa-question"
-  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "(Random)"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "navbar-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, currQuery)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, currQuery && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Suggested Food: ", currQuery.split(" ").map(currWord => {
+    let capitalizedWord = "";
+
+    for (let i = 0; i < currWord.length; i++) {
+      if (i === 0) {
+        capitalizedWord += currWord[0].toUpperCase();
+      } else {
+        capitalizedWord += currWord[i];
+      }
+    }
+
+    return capitalizedWord;
+  }).join(" "))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "navbar-end"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "navbar-item"
@@ -43902,7 +43914,6 @@ class MapContainer extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     });
 
     _defineProperty(this, "getVenues", async () => {
-      console.log(this.state.search);
       const queryResults = await axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/".concat(this.state.search));
 
       if (this.state.search.length > 0) {
@@ -43923,19 +43934,12 @@ class MapContainer extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     });
 
     _defineProperty(this, "getRandom", async () => {
-      const randomQueries = () => {
-        let cuisines = ["Japanese", "Korean", "Vietnamese", "Chinese", "Shanghainese", "Taiwanese", "Thai", "Indian", "Mexican", "Jamaican", "Italian", "French", "German", "Mediterranean", "Greek", "Moroccan", "Filipino", "Hawaiian", "Burgers", "Lobster", "Fried Chicken", "Poke", "Pizza"];
-        let randomInt = Math.floor(Math.random() * Math.floor(cuisines.length));
-        return cuisines[randomInt];
-      }; // let food = ;
-
-
-      await this.setState({
-        currQuery: "".concat(randomQueries())
-      });
-      const queryResults = await axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/".concat(this.state.currQuery));
+      const {
+        data
+      } = await axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/random");
       this.setState({
-        venues: queryResults.data.response.groups[0].items
+        currQuery: data.response.query,
+        venues: data.response.groups[0].items
       });
     });
 
@@ -43947,8 +43951,27 @@ class MapContainer extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       selectedPlace: {},
       center: {},
       bounds: {},
+      coordinates: {},
       currQuery: ""
     };
+  }
+
+  componentWillMount() {
+    navigator.geolocation.getCurrentPosition(async res => {
+      const {
+        coords
+      } = res;
+      this.setState({
+        center: {
+          lat: coords.latitude,
+          lng: coords.longitude
+        },
+        coordinates: {
+          lat: coords.latitude,
+          lng: coords.longitude
+        }
+      });
+    });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -44014,10 +44037,10 @@ class MapContainer extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         lng: -74.009168
       },
       onClick: this.onMarkerClick,
-      name: 'Current Location',
+      name: "Current Location",
       icon: {
-        url: "https://i.imgur.com/Cx0QiNQ.png",
-        scaledSize: new this.props.google.maps.Size(32, 32)
+        url: "https://i.imgur.com/utPe3l5.png",
+        scaledSize: new this.props.google.maps.Size(40, 40)
       }
     }), this.state.venues.map(current => {
       let lat = current.venue.location.lat;

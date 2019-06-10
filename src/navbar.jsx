@@ -1,6 +1,13 @@
 import React from "react";
 
-const Navbar = ({ handleChange, search, getVenues, getMCD, getRandom, currQuery }) => {
+const Navbar = ({
+  handleChange,
+  search,
+  getVenues,
+  getMCD,
+  getRandom,
+  currQuery
+}) => {
   return (
     <nav
       className="navbar is-dark"
@@ -9,7 +16,7 @@ const Navbar = ({ handleChange, search, getVenues, getMCD, getRandom, currQuery 
     >
       <div className="navbar-brand">
         <a href="/" className="navbar-item">
-            <img src="https://i.imgur.com/Cx0QiNQ.png" alt="logo" />
+          <img src="https://i.imgur.com/QlENgvy.png" alt="logo" />
         </a>
         <div className="navbar-item">
           <button onClick={() => getRandom()} className="button is-primary">
@@ -17,13 +24,31 @@ const Navbar = ({ handleChange, search, getVenues, getMCD, getRandom, currQuery 
             <span className="icon is-small">
               <i className="fas fa-question" />
             </span>
+            <span>(Random)</span>
           </button>
         </div>
         <div className="navbar-item">
-          <span><h1>{currQuery}</h1></span>
+          <span>
+            {currQuery && <h1>
+            Suggested Food: {currQuery
+                .split(" ")
+                .map(currWord => {
+                  let capitalizedWord = "";
+                  for (let i = 0; i < currWord.length; i++) {
+                    if (i === 0) {
+                      capitalizedWord += currWord[0].toUpperCase();
+                    } else {
+                      capitalizedWord += currWord[i];
+                    }
+                  }
+                  return capitalizedWord;
+                })
+                .join(" ")}
+            </h1>}
+          </span>
         </div>
       </div>
-      
+
       <div className="navbar-end">
         <div className="navbar-item">
           <button onClick={() => getMCD()} className="button is-danger">
