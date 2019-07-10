@@ -43668,105 +43668,6 @@ const App = () => {
 
 /***/ }),
 
-/***/ "./src/Navbar.jsx":
-/*!************************!*\
-  !*** ./src/Navbar.jsx ***!
-  \************************/
-/*! exports provided: Navbar */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Navbar", function() { return Navbar; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-const Navbar = ({
-  handleChange,
-  search,
-  getVenues,
-  getMCD,
-  getRandom,
-  currQuery
-}) => {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
-    className: "navbar is-dark",
-    role: "navigation",
-    "aria-label": "main navigation"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "navbar-brand"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "/",
-    className: "navbar-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "https://i.imgur.com/QlENgvy.png",
-    alt: "logo"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "navbar-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: () => getRandom(),
-    className: "button is-primary"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "What Should I Eat"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "icon is-small"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-question"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "(Random)"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "navbar-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, currQuery && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Suggested Food: ", currQuery.split(" ").map(currWord => {
-    let capitalizedWord = "";
-
-    for (let i = 0; i < currWord.length; i++) {
-      if (i === 0) {
-        capitalizedWord += currWord[0].toUpperCase();
-      } else {
-        capitalizedWord += currWord[i];
-      }
-    }
-
-    return capitalizedWord;
-  }).join(" "))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "navbar-end"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "navbar-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: () => getMCD(),
-    className: "button is-danger"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "icon is-small"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "https://news.mcdonalds.com/static-files/2e2f906c-31c1-47a7-881f-d97fb455048f",
-    alt: "mcd"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "McFinder"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "navbar-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "field"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "control has-icons-right"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    onChange: handleChange,
-    className: "input",
-    type: "text",
-    name: "search",
-    value: search
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "icon is-right"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-search"
-  }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "navbar-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    type: "submit",
-    className: "button is-info",
-    onClick: () => getVenues()
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "icon"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-utensils"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Search")))));
-};
-
-/***/ }),
-
 /***/ "./src/index.jsx":
 /*!***********************!*\
   !*** ./src/index.jsx ***!
@@ -43802,7 +43703,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var google_maps_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! google-maps-react */ "./node_modules/google-maps-react/dist/index.js");
 /* harmony import */ var google_maps_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(google_maps_react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Navbar */ "./src/Navbar.jsx");
+/* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./navbar */ "./src/navbar.jsx");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -43835,12 +43736,19 @@ class MapContainer extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       });
     });
 
+    _defineProperty(this, "onSubmit", evt => {
+      evt.preventDefault();
+      this.getVenues();
+    });
+
     _defineProperty(this, "getVenues", async () => {
-      const queryResults = await axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/".concat(this.state.search));
+      const {
+        data
+      } = await axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/".concat(this.state.search, "?lng=").concat(this.state.coordinates.lng, "&lat=").concat(this.state.coordinates.lat));
 
       if (this.state.search.length > 0) {
         this.setState({
-          venues: queryResults.data.response.groups[0].items,
+          venues: data.response.groups[0].items,
           search: "",
           currQuery: ""
         });
@@ -43848,9 +43756,11 @@ class MapContainer extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     });
 
     _defineProperty(this, "getMCD", async () => {
-      const queryResults = await axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/McDonalds");
+      const {
+        data
+      } = await axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/McDonalds?lng=".concat(this.state.coordinates.lng, "&lat=").concat(this.state.coordinates.lat));
       this.setState({
-        venues: queryResults.data.response.groups[0].items,
+        venues: data.response.groups[0].items,
         currQuery: ""
       });
     });
@@ -43858,7 +43768,7 @@ class MapContainer extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     _defineProperty(this, "getRandom", async () => {
       const {
         data
-      } = await axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/random");
+      } = await axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/random?lng=".concat(this.state.coordinates.lng, "&lat=").concat(this.state.coordinates.lat));
       this.setState({
         currQuery: data.response.query,
         venues: data.response.groups[0].items
@@ -43871,9 +43781,18 @@ class MapContainer extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
-      center: {},
-      bounds: {},
-      coordinates: {},
+      center: {
+        lat: 40.7050957,
+        lng: -74.009168
+      },
+      bounds: {
+        lat: 40.7050957,
+        lng: -74.009168
+      },
+      coordinates: {
+        lat: 40.7050957,
+        lng: -74.009168
+      },
       currQuery: ""
     };
   }
@@ -43915,8 +43834,8 @@ class MapContainer extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
     if (this.state.venues !== prevState.venues) {
       let bounds = new this.props.google.maps.LatLngBounds();
       bounds.extend({
-        lat: 40.7050957,
-        lng: -74.009168
+        lat: this.state.center.lat,
+        lng: this.state.center.lng
       });
       this.state.venues.map(current => {
         let lat = current.venue.location.lat;
@@ -43933,13 +43852,13 @@ class MapContainer extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
   }
 
   render() {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Navbar__WEBPACK_IMPORTED_MODULE_2__["Navbar"], {
-      getVenues: this.getVenues,
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar__WEBPACK_IMPORTED_MODULE_2__["Navbar"], {
       search: this.state.search,
       handleChange: this.handleChange,
       getMCD: this.getMCD,
       getRandom: this.getRandom,
-      currQuery: this.state.currQuery
+      currQuery: this.state.currQuery,
+      onSubmit: this.onSubmit
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(google_maps_react__WEBPACK_IMPORTED_MODULE_1__["Map"], {
       google: this.props.google,
       style: {
@@ -43947,22 +43866,22 @@ class MapContainer extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
         height: "95%"
       },
       initialCenter: {
-        lat: 40.7050957,
-        lng: -74.009168
+        lat: this.state.coordinates.lat,
+        lng: this.state.coordinates.lng
       },
       center: this.state.center,
       bounds: this.state.bounds,
       zoom: 16
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(google_maps_react__WEBPACK_IMPORTED_MODULE_1__["Marker"], {
       position: {
-        lat: 40.7050957,
-        lng: -74.009168
+        lat: this.state.coordinates.lat,
+        lng: this.state.coordinates.lng
       },
       onClick: this.onMarkerClick,
       name: "Current Location",
       icon: {
-        url: "https://i.imgur.com/utPe3l5.png",
-        scaledSize: new this.props.google.maps.Size(40, 40)
+        url: "https://i.imgur.com/etAYbLC.png",
+        scaledSize: new this.props.google.maps.Size(50, 75)
       }
     }), this.state.venues.map(current => {
       let lat = current.venue.location.lat;
@@ -43986,6 +43905,107 @@ class MapContainer extends react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
 /* harmony default export */ __webpack_exports__["default"] = (Object(google_maps_react__WEBPACK_IMPORTED_MODULE_1__["GoogleApiWrapper"])({
   apiKey: "AIzaSyDKuup9rkE1YPzfcSvki3ing2TzfJj7ufE"
 })(MapContainer));
+
+/***/ }),
+
+/***/ "./src/navbar.jsx":
+/*!************************!*\
+  !*** ./src/navbar.jsx ***!
+  \************************/
+/*! exports provided: Navbar */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Navbar", function() { return Navbar; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const Navbar = ({
+  handleChange,
+  search,
+  onSubmit,
+  getMCD,
+  getRandom,
+  currQuery
+}) => {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+    className: "navbar is-dark",
+    role: "navigation",
+    "aria-label": "main navigation"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "navbar-brand"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "/",
+    className: "navbar-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "https://i.imgur.com/QlENgvy.png",
+    alt: "logo"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "navbar-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: () => getRandom(),
+    className: "button is-primary"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "icon is-small"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-question"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Random"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "navbar-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, currQuery && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Suggested Food: ", currQuery.split(" ").map(currWord => {
+    let capitalizedWord = "";
+
+    for (let i = 0; i < currWord.length; i++) {
+      if (i === 0) {
+        capitalizedWord += currWord[0].toUpperCase();
+      } else {
+        capitalizedWord += currWord[i];
+      }
+    }
+
+    return capitalizedWord;
+  }).join(" "))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "navbar-end"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "navbar-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: () => getMCD(),
+    className: "button is-danger"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "icon is-small"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "https://news.mcdonalds.com/static-files/2e2f906c-31c1-47a7-881f-d97fb455048f",
+    alt: "mcd"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "McFinder"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: onSubmit,
+    className: "navbar-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "navbar-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "field"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "control has-icons-right"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onChange: handleChange,
+    className: "input",
+    type: "text",
+    name: "search",
+    value: search
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "icon is-right"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-search"
+  }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "navbar-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    type: "submit",
+    className: "button is-info"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "icon"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-utensils"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Search"))))));
+};
 
 /***/ }),
 

@@ -12,9 +12,9 @@ export class MapContainer extends Component {
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
-      center: {},
-      bounds: {},
-      coordinates: {},
+      center: { lat: 40.7050957, lng: -74.009168 },
+      bounds: { lat: 40.7050957, lng: -74.009168 },
+      coordinates: { lat: 40.7050957, lng: -74.009168 },
       currQuery: ""
     };
   }
@@ -37,7 +37,7 @@ export class MapContainer extends Component {
     }
     if (this.state.venues !== prevState.venues) {
       let bounds = new this.props.google.maps.LatLngBounds();
-      bounds.extend({ lat: 40.7050957, lng: -74.009168 });
+      bounds.extend({ lat: this.state.center.lat, lng: this.state.center.lng });
       this.state.venues.map(current => {
         let lat = current.venue.location.lat;
         let lng = current.venue.location.lng;
@@ -66,11 +66,16 @@ export class MapContainer extends Component {
     this.setState({ [evt.target.name]: evt.target.value });
   };
 
+  onSubmit = evt => {
+    evt.preventDefault();
+    this.getVenues();
+  }
+
   getVenues = async () => {
-    const queryResults = await axios.get(`/${this.state.search}`);
+    const { data } = await axios.get(`/${this.state.search}?lng=${this.state.coordinates.lng}&lat=${this.state.coordinates.lat}`);
     if (this.state.search.length > 0) {
       this.setState({
-        venues: queryResults.data.response.groups[0].items,
+        venues: data.response.groups[0].items,
         search: "",
         currQuery: ""
       });
@@ -78,15 +83,15 @@ export class MapContainer extends Component {
   };
 
   getMCD = async () => {
-    const queryResults = await axios.get("/McDonalds");
+    const { data } = await axios.get(`/McDonalds?lng=${this.state.coordinates.lng}&lat=${this.state.coordinates.lat}`);
     this.setState({
-      venues: queryResults.data.response.groups[0].items,
+      venues: data.response.groups[0].items,
       currQuery: ""
     });
   };
 
   getRandom = async () => {
-    const { data } = await axios.get(`/random`);
+    const { data } = await axios.get(`/random?lng=${this.state.coordinates.lng}&lat=${this.state.coordinates.lat}`);
 
     this.setState({
       currQuery: data.response.query,
@@ -98,12 +103,12 @@ export class MapContainer extends Component {
     return (
       <div>
         <Navbar
-          getVenues={this.getVenues}
           search={this.state.search}
           handleChange={this.handleChange}
           getMCD={this.getMCD}
           getRandom={this.getRandom}
           currQuery={this.state.currQuery}
+          onSubmit={this.onSubmit}
         />
         <Map
           google={this.props.google}
@@ -111,18 +116,18 @@ export class MapContainer extends Component {
             width: "100%",
             height: "95%"
           }}
-          initialCenter={{ lat: 40.7050957, lng: -74.009168 }}
+          initialCenter={{ lat: this.state.coordinates.lat, lng: this.state.coordinates.lng }}
           center={this.state.center}
           bounds={this.state.bounds}
           zoom={16}
         >
           <Marker
-            position={{ lat: 40.7050957, lng: -74.009168 }}
+            position={{ lat: this.state.coordinates.lat, lng: this.state.coordinates.lng }}
             onClick={this.onMarkerClick}
             name={"Current Location"}
             icon={{
-              url: "https://i.imgur.com/utPe3l5.png",
-              scaledSize: new this.props.google.maps.Size(40, 40)
+              url: "https://i.imgur.com/etAYbLC.png",
+              scaledSize: new this.props.google.maps.Size(50, 75)
             }}
           />
           {this.state.venues.map(current => {

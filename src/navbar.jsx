@@ -3,7 +3,7 @@ import React from "react";
 export const Navbar = ({
   handleChange,
   search,
-  getVenues,
+  onSubmit,
   getMCD,
   getRandom,
   currQuery
@@ -20,11 +20,10 @@ export const Navbar = ({
         </a>
         <div className="navbar-item">
           <button onClick={() => getRandom()} className="button is-primary">
-            <span>What Should I Eat</span>
             <span className="icon is-small">
               <i className="fas fa-question" />
             </span>
-            <span>(Random)</span>
+            <span>Random</span>
           </button>
         </div>
         <div className="navbar-item">
@@ -48,7 +47,7 @@ export const Navbar = ({
           </span>
         </div>
       </div>
-
+      
       <div className="navbar-end">
         <div className="navbar-item">
           <button onClick={() => getMCD()} className="button is-danger">
@@ -61,6 +60,7 @@ export const Navbar = ({
             <span>McFinder</span>
           </button>
         </div>
+        <form onSubmit={onSubmit} className="navbar-item">
         <div className="navbar-item">
           <div className="field">
             <div className="control has-icons-right">
@@ -81,7 +81,6 @@ export const Navbar = ({
           <button
             type="submit"
             className="button is-info"
-            onClick={() => getVenues()}
           >
             <span className="icon">
               <i className="fas fa-utensils" />
@@ -89,6 +88,7 @@ export const Navbar = ({
             <span>Search</span>
           </button>
         </div>
+      </form>
       </div>
     </nav>
   );
