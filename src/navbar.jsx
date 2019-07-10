@@ -1,6 +1,6 @@
 import React from "react";
 
-const Navbar = ({
+export const Navbar = ({
   handleChange,
   search,
   getVenues,
@@ -93,5 +93,3 @@ const Navbar = ({
     </nav>
   );
 };
-
-export default Navbar;
