@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
-import { Navbar } from './Navbar';
+import { Navbar } from './navbar';
 import axios from "axios";
 
 export class MapContainer extends Component {
