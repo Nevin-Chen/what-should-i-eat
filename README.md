@@ -12,7 +12,8 @@ Open up the project on
 
 ### Features
 
-Don't know what to eat? Simply hit the random button and food choices for a random cuisine will be recommended to you.
+Don't know what to eat? Simply hit the random button for a random cuisine.
+
 ![Random cuisine](https://i.imgur.com/rbEjsEX.png)
 
 Feel free to search if you already know what you want.
