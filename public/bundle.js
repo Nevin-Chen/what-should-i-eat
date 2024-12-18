@@ -43941,18 +43941,16 @@ const Navbar = ({
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: "https://i.imgur.com/QlENgvy.png",
     alt: "logo"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "logo"
+  }, "What Should I Eat")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "navbar-item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: () => getRandom(),
-    className: "button is-primary"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "icon is-small"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-question"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Random"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "button is-primary large"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Decide for me!"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "navbar-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, currQuery && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Suggested Food: ", currQuery.split(" ").map(currWord => {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, currQuery && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Suggested Food:", " ", currQuery.split(" ").map(currWord => {
     let capitalizedWord = "";
 
     for (let i = 0; i < currWord.length; i++) {
@@ -43974,7 +43972,7 @@ const Navbar = ({
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "icon is-small"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "https://news.mcdonalds.com/static-files/2e2f906c-31c1-47a7-881f-d97fb455048f",
+    src: "https://cdn.worldvectorlogo.com/logos/mcdonald-s-15.svg",
     alt: "mcd"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "McFinder"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: onSubmit,
@@ -43990,7 +43988,8 @@ const Navbar = ({
     className: "input",
     type: "text",
     name: "search",
-    value: search
+    value: search,
+    placeholder: "Why bother searching"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "icon is-right"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
